@@ -3,7 +3,8 @@ var gutil = require('gulp-util');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var globby = require('globby');
-var connect = require('gulp-connect')
+var connect = require('gulp-connect');
+var concat = require('gulp-concat');
 
 gulp.task('compile', function() {
     globby(['./src/js/**/*.js'])
@@ -39,6 +40,24 @@ gulp.task('copy.html', function() {
     .pipe(gulp.dest('./public'));
 });
 
-gulp.task('copy', ['copy.html']);
+gulp.task('copy.static', function() {
+    gulp.src(
+        [
+            './bower_components/jquery/dist/jquery.min.js',
+            './bower_components/bootstrap/dist/js/bootstrap.min.js'
+        ])
+        .pipe(concat('vendors.js'))
+        .pipe(gulp.dest('./public/'));
+
+    gulp.src(
+        [
+            './bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'bootstrap-theme.min.css'
+        ])
+        .pipe(concat('vendors.css'))
+        .pipe(gulp.dest('./public/'));
+});
+
+gulp.task('copy', ['copy.html', 'copy.static']);
 
 gulp.task('default', ['copy', 'watch', 'compile', 'serve']);
