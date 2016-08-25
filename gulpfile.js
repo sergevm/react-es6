@@ -5,11 +5,14 @@ var source = require('vinyl-source-stream');
 var globby = require('globby');
 var connect = require('gulp-connect');
 var concat = require('gulp-concat');
+var babelify = require('babelify');
 
 gulp.task('compile', function() {
     globby(['./src/js/**/*.js'])
         .then(paths => {
-            browserify({entries: paths})
+            browserify({entries: paths, debug:true})
+                .transform(babelify, {presets: ['es2015']})
+                .on('error', gutil.log)
                 .bundle()
                 .on('error', function(e) {
                     gutil.log(e);
