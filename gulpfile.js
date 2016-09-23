@@ -11,7 +11,7 @@ gulp.task('compile', function() {
     globby(['./src/js/**/*.js'])
         .then(paths => {
             browserify({entries: paths, debug:true})
-                .transform(babelify, {presets: ['es2015']})
+                .transform(babelify, {presets: ['es2015', 'react']})
                 .on('error', gutil.log)
                 .bundle()
                 .on('error', function(e) {
@@ -24,15 +24,16 @@ gulp.task('compile', function() {
 
 gulp.task('serve', function() {
     connect.server({
-        root: 'public',
+        root: './public',
         livereload: true
     });
 });
 
 gulp.task('watch', function() {
-    gulp.watch(['./src/*.html'], ['copy.html', 'reload']);
-    gulp.watch(['./src/js/**/*.js'], ['compile', 'reload']);
-    gulp.watch(['./src/styles.css'], ['copy.css', 'reload']);
+    gulp.watch(['./src/*.html'], ['copy.html']);
+    gulp.watch(['./src/js/**/*.js'], ['compile']);
+    gulp.watch(['./src/styles.css'], ['copy.css']);
+    gulp.watch(['./public/**/*.*'], ['reload']);
 });
 
 gulp.task('reload', function() {
@@ -53,16 +54,18 @@ gulp.task('copy.static', function() {
     gulp.src(
         [
             './bower_components/jquery/dist/jquery.min.js',
-            './bower_components/bootstrap/dist/js/bootstrap.min.js'
-        ])
+            './bower_components/bootstrap/dist/js/bootstrap.min.js',
+            './node_modules/react/dist/react-min.js',
+            './node_modules/react-dom/dist/react-core-min.js'
+       ])
         .pipe(concat('vendors.js'))
         .pipe(gulp.dest('./public/'));
 
     gulp.src(
         [
             './bower_components/bootstrap/dist/css/bootstrap.min.css',
-            'bootstrap-theme.min.css'
-        ])
+            './bower_components/bootstrap/dist/css/bootstrap-theme.min.css'
+         ])
         .pipe(concat('vendors.css'))
         .pipe(gulp.dest('./public/'));
 });
