@@ -19,6 +19,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
     "gulp-util": "^3.0.7",
+    "react-router": "^2.8.1",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
