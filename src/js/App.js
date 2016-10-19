@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MainView from './MainView';
-import Projects from './Projects';
-import Time from './Time';
-import Invoices from './Invoices';
+import Projects from './Projects/Projects';
+import Time from './Time/Time';
+import Invoices from './Invoices/Invoices';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 
 export default class App extends React.Component {

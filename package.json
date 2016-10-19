@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "babel-preset-react": "^6.11.1",
+    "dateformat": "^1.0.12",
     "react": "^15.3.2",
     "react-core": "0.0.0",
     "react-dom": "^15.3.2"
