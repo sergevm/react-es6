@@ -23,7 +23,7 @@ export default class Projects extends React.Component
             <div>
                 <h2>Projects</h2>
                 <div>
-                    <Link to='projects/add'>Add</Link>
+                    <Link to='projects/add' className='btn btn-default btn-primary'>Add</Link>
                     <ProjectList projects={this.state.projects} />
                 </div>
             </div>

@@ -5,7 +5,7 @@ export default class NewProject extends React.Component{
     render() {
         return  <div>
                     <h2>Create new project</h2>
-                    <Link to='projects'>Done</Link>
+                    <Link to='projects' className='btn btn-default btn-primary'>Done</Link>
                 </div>;
     }
 }

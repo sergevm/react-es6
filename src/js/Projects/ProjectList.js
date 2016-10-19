@@ -10,9 +10,17 @@ export default class ProjectList extends React.Component
             });
 
         return (
-            <ul>
+            <table className='table table-striped table-bordered'>
+                <tbody>
+                <tr>
+                    <th>Name</th>
+                    <th>Start Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                </tr>
                 {projectItems}
-            </ul>);
+                </tbody>
+            </table>);
     }
 }
 
