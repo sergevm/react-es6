@@ -8,10 +8,12 @@ export default class MenuItem extends React.Component
         this.router = context.router;
     }
     render() {
-        let className = this.router.isActive(this.props.to, true) ? 'active' :'';
+        var {pathname, ...other} = this.props;
+        let className = pathname.startsWith(this.props.to) ? 'active' : '';
+        //let className = this.router.isActive(this.props.to, true) ? 'active' :'';
         
         return (<li className={className} role='presentation'>
-                    <Link {...this.props}>
+                    <Link {...other}>
                         {this.props.children}
                     </Link> 
                 </li>);
@@ -20,7 +22,8 @@ export default class MenuItem extends React.Component
 
 MenuItem.propTypes = {
     to: React.PropTypes.string.isRequired,
-    children: React.PropTypes.any
+    children: React.PropTypes.any,
+    pathname: React.PropTypes.string
 };
 
 MenuItem.contextTypes = {
