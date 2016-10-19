@@ -3,6 +3,9 @@ import ProjectListItem from './ProjectListItem';
 
 export default class ProjectList extends React.Component
 {
+    componentDidMount() {
+        document.title = 'Project List';
+    }
     render() {
         var projectItems = this.props.projects.map(
             (project) => { 
